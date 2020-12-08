@@ -21,6 +21,7 @@
     "discord.js-commando": "git+https://github.com/discordjs/Commando.git",
     "dotenv": "^8.2.0",
     "ffmpeg-static": "^4.2.7",
+    "mongoose": "^5.10.5",
     "opusscript": "0.0.7"
   },
   "devDependencies": {
