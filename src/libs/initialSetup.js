@@ -22,7 +22,8 @@ module.exports = async () => {
       new Voice({ id_user: '367825641539895296', name_user: '𝓝𝓲𝓪𝓷𝓬𝓪𝓭𝓾', tracks: saveTracks[4]._id }).save(),
       new Voice({ id_user: '225774167751000065', name_user: 'DΞΔN', tracks: saveTracks[3]._id }).save(),
       new Voice({ id_user: '418468604879831062', name_user: 'ChrisKoy', tracks: saveTracks[2]._id }).save(),
-      new Voice({ id_user: '304305848602066944', name_user: 'Jimmy', tracks: saveTracks[0]._id }).save()
+      new Voice({ id_user: '304305848602066944', name_user: 'Jimmy', tracks: saveTracks[0]._id }).save(),
+      new Voice({ id_user: '344220396276678658', name_user: 'Akoyagu', tracks: saveTracks[6]._id }).save()
     ])
 
     console.log('*SAVE TRACKS*', saveTracks)

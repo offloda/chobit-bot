@@ -1,5 +1,4 @@
 const Commando = require('discord.js-commando')
-
 module.exports = class JoinCommand extends Commando.Command {
   constructor(bot) {
     super(bot, {
@@ -24,6 +23,13 @@ module.exports = class JoinCommand extends Commando.Command {
       message.reply(`${String(args).toLowerCase()} no es valido 😫`)
       return
     }
+    message.reply({
+      embed: {
+        image: {
+          url: 'https://media.giphy.com/media/2FDBn9eGYMi2Y/giphy.gif'
+        }
+      }
+    })
     message.reply(`Tiraste ${emojiPool(personPool)} @Chobit, tiro ${emojiPool(botPool)}`)
     switch (personPool) {
       case 1:
