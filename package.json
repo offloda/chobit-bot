@@ -9,7 +9,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index",
-    "dev": "nodemon src/index"
+    "dev": "nodemon -L src/index",
+    "check": "prettier --check \"src/**/*.js\"",
+    "write": "prettier --write \"src/**/*.js\""
   },
   "repository": "https://github.com/offloda/chobit-bot.git",
   "author": "Offloda",
@@ -26,6 +28,15 @@
     "opusscript": "0.0.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1"
   }
 }

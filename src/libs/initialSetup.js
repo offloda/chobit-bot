@@ -1,34 +1,63 @@
-const { Track } = require('../models/Track')
-const { Voice } = require('../models/Voice')
+const { Voice } = require('../models/Voice');
 
 module.exports = async () => {
   try {
-    const countTracks = await Track.estimatedDocumentCount()
-    const countVoices = await Voice.estimatedDocumentCount()
-    if (countTracks > 0 || countVoices) return
-
-    const saveTracks = await Promise.all([
-      new Track({ name: 'jimmy-join.m4a', path: 'sounds/jimmy-join.m4a' }).save(),
-      new Track({ name: 'chobit-join.m4a', path: 'sounds/chobit-join.m4a' }).save(),
-      new Track({ name: 'koy-join.m4a', path: 'sounds/koy-join.m4a' }).save(),
-      new Track({ name: 'maty-join.m4a', path: 'sounds/maty-join.m4a' }).save(),
-      new Track({ name: 'mauri-join.m4a', path: 'sounds/mauri-join.m4a' }).save(),
-      new Track({ name: 'panes-join.m4a', path: 'sounds/panes-join.m4a' }).save(),
-      new Track({ name: 'silent-wench.m4a', path: 'sounds/silent-wench.m4a' }).save()
-    ])
+    const countVoices = await Voice.estimatedDocumentCount();
+    if (countVoices > 0) return;
 
     const saveVoices = await Promise.all([
-      new Voice({ id_user: '159822729061597184', name_user: 'Offloda', tracks: saveTracks[5]._id }).save(),
-      new Voice({ id_user: '367825641539895296', name_user: '𝓝𝓲𝓪𝓷𝓬𝓪𝓭𝓾', tracks: saveTracks[4]._id }).save(),
-      new Voice({ id_user: '225774167751000065', name_user: 'DΞΔN', tracks: saveTracks[3]._id }).save(),
-      new Voice({ id_user: '418468604879831062', name_user: 'ChrisKoy', tracks: saveTracks[2]._id }).save(),
-      new Voice({ id_user: '304305848602066944', name_user: 'Jimmy', tracks: saveTracks[0]._id }).save(),
-      new Voice({ id_user: '344220396276678658', name_user: 'Akoyagu', tracks: saveTracks[6]._id }).save()
-    ])
+      new Voice({
+        id_user: '159822729061597184',
+        name_user: 'Offloda',
+        track: {
+          name_track: 'panes-join-sephiroth.m4a',
+          source_track: 'sounds/panes-join-sephiroth.m4a'
+        },
+      }).save(),
+      new Voice({
+        id_user: '367825641539895296',
+        name_user: '𝓝𝓲𝓪𝓷𝓬𝓪𝓭𝓾',
+        track: {
+          name_track: 'mauri-join.m4a',
+          source_track: 'sounds/mauri-join.m4a'
+        },
+      }).save(),
+      new Voice({
+        id_user: '225774167751000065',
+        name_user: 'DΞΔN',
+        track: {
+          name_track: 'maty-join.m4a',
+          source_track: 'sounds/maty-join.m4a'
+        },
+      }).save(),
+      new Voice({
+        id_user: '418468604879831062',
+        name_user: 'ChrisKoy',
+        track: {
+          name_track: 'koy-join.m4a',
+          source_track: 'sounds/koy-join.m4a'
+        },
+      }).save(),
+      new Voice({
+        id_user: '304305848602066944',
+        name_user: 'Jimmy',
+        track: {
+          name_track: 'jimmy-join.m4a',
+          source_track: 'sounds/jimmy-join.m4a'
+        },
+      }).save(),
+      new Voice({
+        id_user: '344220396276678658',
+        name_user: 'Akoyagu',
+        track: {
+          name_track: 'silent-wench.m4a',
+          source_track: 'sounds/silent-wench.m4a'
+        },
+      }).save(),
+    ]);
 
-    console.log('*SAVE TRACKS*', saveTracks)
-    console.log('*SAVE VOICES*', saveVoices)
+    console.log('*SAVE VOICES*', saveVoices);
   } catch (error) {
-    console.log('*SEED ERROR TRACKS & VOICES*', error)
+    console.log('*SEED ERROR TRACKS & VOICES*', error);
   }
-}
+};

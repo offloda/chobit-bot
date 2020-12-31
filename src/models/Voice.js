@@ -1,49 +1,55 @@
-const {Schema, model} = require('mongoose')
+const { Schema, model } = require('mongoose');
 
-const voiceSchema = new Schema({
-  id_user: {
-    type: String,
-    required: true,
-    unique: true
+const voiceSchema = new Schema(
+  {
+    id_user: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    name_user: String,
+    track: {
+      name_track: String,
+      source_track: String, //link de youtube o el path de la musica
+    },
   },
-  name_user: String,
-  tracks: [{
-    ref: 'Track',
-    type: Schema.Types.ObjectId,
-  }]
-}, {
-  timestamps: true,
-  versionKey: false,
-})
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+);
 
-const Voice = model('Voice', voiceSchema)
+const Voice = model('Voice', voiceSchema);
 
 const VoiceModel = {
-  addSound: async (data) => {
+  registerVoice: async (data) => {
     try {
       await Voice.create({
-        id_user: data.idUser,
+        id_user: data.userID,
         name_user: data.nameUser,
-        tracks: data.trackID
-      })
+        tracks: data.trackObject,
+      });
     } catch (error) {
-      return `El usuario ${data.nameUser} ya tiene asignado una cancion, si quieres cambiarlas usa el comando !c updateSong`
+      return `El usuario ${data.nameUser} ya tiene asignado una cancion, si quieres cambiarlas usa el comando !c updateSong`;
     }
   },
   updateSound: async (data) => {
     try {
-      await Voice.findOneAndUpdate({ id_user: data.idUser }, { tracks: data.trackID })
+      return await Voice.findOneAndUpdate(
+        { id_user: data.userID },
+        { track: data.trackObject, updated_at: new Date() }
+      );
     } catch (error) {
-      return 'No se pudo relacionar la pista'
+      return null;
     }
   },
   findSound: async (data) => {
     try {
-      return await Voice.findOne({ id_user: data.userID })
+      return await Voice.findOne({ id_user: data.userID });
     } catch (error) {
-      return 0
+      return 0;
     }
-  }
-}
+  },
+};
 
-module.exports = { VoiceModel, Voice }
+module.exports = { VoiceModel, Voice };

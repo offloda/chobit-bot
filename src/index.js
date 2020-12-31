@@ -1,28 +1,28 @@
-require('dotenv').config()
-require('./connection')
+require('dotenv').config();
+require('./connection');
 
-const path = require('path')
-const Commando = require('discord.js-commando')
+const path = require('path');
+const Commando = require('discord.js-commando');
 
-const { discord } = require('../config/configure')
+const { discord } = require('../config/configure');
 
 const bot = new Commando.CommandoClient({
   owner: String(discord.owner),
   commandPrefix: discord.prefix,
-})
+});
 
 bot.on('ready', () => {
-  console.log(`Logged in as ${bot.user.tag}!`)
+  console.log(`Logged in as ${bot.user.tag}!`);
   bot.registry
     .registerGroups([
-      ['test', 'test commands'],
-      ['legacy', 'legacy commands']
+      ['fun', 'Fun commands'],
+      ['mod', 'Mod commands'],
     ])
     .registerDefaults()
-    .registerCommandsIn(path.join(__dirname, 'cmds'))
-})
+    .registerCommandsIn(path.join(__dirname, 'cmds'));
+});
 
-require('./messages/index')(bot)
-require('./events/index')(bot, __dirname)
+require('./messages/index')(bot);
+require('./events/index')(bot, __dirname);
 
-bot.login(discord.token)
+bot.login(discord.token);
